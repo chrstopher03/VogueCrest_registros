@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Registro VogueCrest - Ventas e Inversiones</title>
+  <title>Control Completo VogueCrest con Gráficas</title>
   <style>
+       @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
     body {
       font-family: 'Montserrat', sans-serif;
-      max-width: 900px;
+      max-width: 960px;
       margin: 20px auto;
       padding: 0 20px 80px;
       background: #f9f9f9;
@@ -23,10 +24,20 @@
       height: 50px;
       object-fit: contain;
     }
+    header div {
+      display: flex;
+      flex-direction: column;
+    }
     header h1 {
       font-weight: 700;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       margin: 0;
+    }
+    header p {
+      margin: 4px 0 0;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #555;
     }
     form {
       background: white;
@@ -123,6 +134,36 @@
       text-align: center;
       margin-bottom: 12px;
     }
+    #estadoInversion {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      user-select: none;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    /* Gráficas */
+    .graficas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: space-around;
+      margin-top: 30px;
+    }
+    .grafica-container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      flex: 1 1 450px;
+    }
     @media (max-width: 600px) {
       body {
         padding: 0 10px 80px;
@@ -132,8 +173,11 @@
         gap: 6px;
         text-align: center;
       }
+      header div {
+        align-items: center;
+      }
       header h1 {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
       }
       table {
         display: block;
@@ -153,90 +197,138 @@
       .resumen div {
         flex: none;
       }
+      .graficas {
+        flex-direction: column;
+      }
+      .grafica-container {
+        flex: none;
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="100.png" alt="VogueCrest Logo" />
-    <h1>Registro de Ventas e Inversiones - VogueCrest</h1>
-  </header>
 
-  <form id="registroForm" aria-label="Formulario para registrar ventas e inversiones">
-    <label for="fecha">Fecha:</label>
-    <input type="date" id="fecha" required />
-
-    <label for="tipo">Tipo de registro:</label>
-    <select id="tipo" required>
-      <option value="" disabled selected>Selecciona tipo</option>
-      <option value="inversion">Inversión</option>
-      <option value="venta">Venta</option>
-    </select>
-
-    <label for="descripcion">Descripción:</label>
-    <textarea id="descripcion" placeholder="Descripción del registro" required></textarea>
-
-    <label for="cantidad">Cantidad:</label>
-    <input type="number" id="cantidad" min="1" step="1" value="1" required />
-
-    <label for="monto">Precio unitario (C$):</label>
-    <input type="number" id="monto" min="0" step="0.01" placeholder="Ej: 900.00" required />
-
-    <button type="submit">Agregar Registro</button>
-  </form>
-
-  <table id="tablaRegistros" aria-label="Tabla de registros">
-    <thead>
-      <tr>
-        <th>Fecha</th>
-        <th>Tipo</th>
-        <th>Descripción</th>
-        <th>Cantidad</th>
-        <th>Precio Unitario (C$)</th>
-        <th>Monto Total (C$)</th>
-        <th>Acción</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Registros aparecerán aquí -->
-    </tbody>
-  </table>
-
-  <div class="resumen" aria-live="polite">
-    <div>
-      <div><strong>Resumen Total</strong></div>
-      <div>Total Invertido:<br><span id="totalInvertido">C$0.00</span></div>
-      <div>Total Vendido:<br><span id="totalVendido">C$0.00</span></div>
-      <div>Ganancia:<br><span id="ganancia">C$0.00</span></div>
-    </div>
-    <div>
-      <div><strong>Resumen Últimos 7 Días</strong></div>
-      <div>Total Invertido:<br><span id="totalInvertidoSemana">C$0.00</span></div>
-      <div>Total Vendido:<br><span id="totalVendidoSemana">C$0.00</span></div>
-      <div>Ganancia:<br><span id="gananciaSemana">C$0.00</span></div>
-    </div>
-    <div>
-      <div><strong>Resumen del Día</strong></div>
-      <div>Total Invertido:<br><span id="totalInvertidoDia">C$0.00</span></div>
-      <div>Total Vendido:<br><span id="totalVendidoDia">C$0.00</span></div>
-      <div>Ganancia:<br><span id="gananciaDia">C$0.00</span></div>
-    </div>
+<header>
+  <img src="100.png" alt="VogueCrest Logo" />
+  <div>
+    <h1>Control Completo de Negocio - VogueCrest</h1>
+    <p>Propiedad de: <strong>Christopher Ramirez</strong></p>
   </div>
+</header>
 
-  <script>
+<form id="registroForm" aria-label="Formulario para registrar operaciones del negocio">
+  <label for="fecha">Fecha:</label>
+  <input type="date" id="fecha" required />
+
+  <label for="tipo">Tipo de registro:</label>
+  <select id="tipo" required>
+    <option value="" disabled selected>Selecciona tipo</option>
+    <option value="inversion">Inversión</option>
+    <option value="venta">Venta</option>
+    <option value="gasto">Gasto</option>
+  </select>
+
+  <label for="descripcion">Descripción:</label>
+  <textarea id="descripcion" placeholder="Detalle la operación" required></textarea>
+
+  <label for="cantidad">Cantidad:</label>
+  <input type="number" id="cantidad" min="1" step="1" value="1" required />
+
+  <label for="monto">Precio unitario (C$):</label>
+  <input type="number" id="monto" min="0" step="0.01" placeholder="Ej: 900.00" required />
+
+  <button type="submit">Agregar Registro</button>
+</form>
+
+<table id="tablaRegistros" aria-label="Tabla de registros">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Tipo</th>
+      <th>Descripción</th>
+      <th>Cantidad</th>
+      <th>Precio Unitario (C$)</th>
+      <th>Monto Total (C$)</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Aquí aparecerán los registros -->
+  </tbody>
+</table>
+
+<div class="resumen" aria-live="polite">
+  <div>
+    <div><strong>Resumen Total</strong></div>
+    <div>Total Invertido:<br><span id="totalInvertido">C$0.00</span></div>
+    <div>Total Vendido:<br><span id="totalVendido">C$0.00</span></div>
+    <div>Total Gastado:<br><span id="totalGastos">C$0.00</span></div>
+    <div>Ganancia Neta:<br><span id="ganancia">C$0.00</span></div>
+  </div>
+  <div>
+    <div><strong>Resumen Últimos 7 Días</strong></div>
+    <div>Total Invertido:<br><span id="totalInvertidoSemana">C$0.00</span></div>
+    <div>Total Vendido:<br><span id="totalVendidoSemana">C$0.00</span></div>
+    <div>Total Gastado:<br><span id="totalGastosSemana">C$0.00</span></div>
+    <div>Ganancia Neta:<br><span id="gananciaSemana">C$0.00</span></div>
+  </div>
+  <div>
+    <div><strong>Resumen del Día</strong></div>
+    <div>Total Invertido:<br><span id="totalInvertidoDia">C$0.00</span></div>
+    <div>Total Vendido:<br><span id="totalVendidoDia">C$0.00</span></div>
+    <div>Total Gastado:<br><span id="totalGastosDia">C$0.00</span></div>
+    <div>Ganancia Neta:<br><span id="gananciaDia">C$0.00</span></div>
+  </div>
+</div>
+
+<div id="estadoInversion"></div>
+
+<section class="graficas" aria-label="Gráficas de evolución del negocio">
+  <div class="grafica-container">
+    <h3 style="text-align:center;">Evolución de Inversiones</h3>
+    <canvas id="graficaInversion"></canvas>
+  </div>
+  <div class="grafica-container">
+    <h3 style="text-align:center;">Evolución de Ventas</h3>
+    <canvas id="graficaVentas"></canvas>
+  </div>
+  <div class="grafica-container">
+    <h3 style="text-align:center;">Evolución de Gastos</h3>
+    <canvas id="graficaGastos"></canvas>
+  </div>
+  <div class="grafica-container">
+    <h3 style="text-align:center;">Ganancia Neta Acumulada</h3>
+    <canvas id="graficaGanancia"></canvas>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 VogueCrest - Propiedad de <strong>Christopher Ramirez</strong>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
     const registroForm = document.getElementById('registroForm');
     const tablaBody = document.querySelector('#tablaRegistros tbody');
+
     const totalInvertidoEl = document.getElementById('totalInvertido');
     const totalVendidoEl = document.getElementById('totalVendido');
+    const totalGastosEl = document.getElementById('totalGastos');
     const gananciaEl = document.getElementById('ganancia');
 
     const totalInvertidoSemanaEl = document.getElementById('totalInvertidoSemana');
     const totalVendidoSemanaEl = document.getElementById('totalVendidoSemana');
+    const totalGastosSemanaEl = document.getElementById('totalGastosSemana');
     const gananciaSemanaEl = document.getElementById('gananciaSemana');
 
     const totalInvertidoDiaEl = document.getElementById('totalInvertidoDia');
     const totalVendidoDiaEl = document.getElementById('totalVendidoDia');
+    const totalGastosDiaEl = document.getElementById('totalGastosDia');
     const gananciaDiaEl = document.getElementById('gananciaDia');
+
+    const estadoInversionEl = document.getElementById('estadoInversion');
 
     let registros = JSON.parse(localStorage.getItem('registroVogueCrest')) || [];
 
@@ -256,7 +348,7 @@
 
         tr.innerHTML = `
           <td>${registro.fecha}</td>
-          <td>${registro.tipo === 'inversion' ? 'Inversión' : 'Venta'}</td>
+          <td>${registro.tipo === 'inversion' ? 'Inversión' : registro.tipo === 'venta' ? 'Venta' : 'Gasto'}</td>
           <td>${registro.descripcion}</td>
           <td>${registro.cantidad}</td>
           <td>${formatoMonto(registro.monto)}</td>
@@ -270,24 +362,37 @@
       actualizarResumen();
       actualizarResumenSemana();
       actualizarResumenDia();
+      actualizarEstadoInversion();
+      actualizarGraficas();
       agregarEventosBorrar();
     }
 
-    function actualizarResumen() {
+    function calcularTotalesFiltrados(filtroFecha) {
       let totalInvertido = 0;
       let totalVendido = 0;
+      let totalGastos = 0;
 
       registros.forEach(r => {
-        const totalItem = r.cantidad * r.monto;
-        if (r.tipo === 'inversion') totalInvertido += Number(totalItem);
-        else if (r.tipo === 'venta') totalVendido += Number(totalItem);
+        const fechaRegistro = new Date(r.fecha);
+        if (!filtroFecha || (fechaRegistro >= filtroFecha.desde && fechaRegistro <= filtroFecha.hasta)) {
+          const totalItem = r.cantidad * r.monto;
+          if (r.tipo === 'inversion') totalInvertido += Number(totalItem);
+          else if (r.tipo === 'venta') totalVendido += Number(totalItem);
+          else if (r.tipo === 'gasto') totalGastos += Number(totalItem);
+        }
       });
 
-      const ganancia = totalVendido - totalInvertido;
+      return { totalInvertido, totalVendido, totalGastos };
+    }
 
-      totalInvertidoEl.textContent = formatoMonto(totalInvertido);
-      totalVendidoEl.textContent = formatoMonto(totalVendido);
-      gananciaEl.textContent = formatoMonto(ganancia);
+    function actualizarResumen() {
+      const totales = calcularTotalesFiltrados(null);
+      const gananciaNeta = totales.totalVendido - totales.totalInvertido - totales.totalGastos;
+
+      totalInvertidoEl.textContent = formatoMonto(totales.totalInvertido);
+      totalVendidoEl.textContent = formatoMonto(totales.totalVendido);
+      totalGastosEl.textContent = formatoMonto(totales.totalGastos);
+      gananciaEl.textContent = formatoMonto(gananciaNeta);
     }
 
     function actualizarResumenSemana() {
@@ -295,44 +400,54 @@
       const hace7Dias = new Date(hoy);
       hace7Dias.setDate(hoy.getDate() - 7);
 
-      let totalInvertidoSemana = 0;
-      let totalVendidoSemana = 0;
+      const totales = calcularTotalesFiltrados({desde: hace7Dias, hasta: hoy});
+      const gananciaNeta = totales.totalVendido - totales.totalInvertido - totales.totalGastos;
 
-      registros.forEach(r => {
-        const fechaRegistro = new Date(r.fecha);
-        if (fechaRegistro >= hace7Dias && fechaRegistro <= hoy) {
-          const totalItem = r.cantidad * r.monto;
-          if (r.tipo === 'inversion') totalInvertidoSemana += Number(totalItem);
-          else if (r.tipo === 'venta') totalVendidoSemana += Number(totalItem);
-        }
-      });
-
-      const gananciaSemana = totalVendidoSemana - totalInvertidoSemana;
-
-      totalInvertidoSemanaEl.textContent = formatoMonto(totalInvertidoSemana);
-      totalVendidoSemanaEl.textContent = formatoMonto(totalVendidoSemana);
-      gananciaSemanaEl.textContent = formatoMonto(gananciaSemana);
+      totalInvertidoSemanaEl.textContent = formatoMonto(totales.totalInvertido);
+      totalVendidoSemanaEl.textContent = formatoMonto(totales.totalVendido);
+      totalGastosSemanaEl.textContent = formatoMonto(totales.totalGastos);
+      gananciaSemanaEl.textContent = formatoMonto(gananciaNeta);
     }
 
     function actualizarResumenDia() {
-      const hoyStr = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
+      const hoyStr = new Date().toISOString().slice(0, 10);
+      const hoy = new Date(hoyStr);
 
-      let totalInvertidoDia = 0;
-      let totalVendidoDia = 0;
+      const totales = calcularTotalesFiltrados({desde: hoy, hasta: hoy});
+      const gananciaNeta = totales.totalVendido - totales.totalInvertido - totales.totalGastos;
 
-      registros.forEach(r => {
-        if (r.fecha === hoyStr) {
-          const totalItem = r.cantidad * r.monto;
-          if (r.tipo === 'inversion') totalInvertidoDia += Number(totalItem);
-          else if (r.tipo === 'venta') totalVendidoDia += Number(totalItem);
-        }
-      });
+      totalInvertidoDiaEl.textContent = formatoMonto(totales.totalInvertido);
+      totalVendidoDiaEl.textContent = formatoMonto(totales.totalVendido);
+      totalGastosDiaEl.textContent = formatoMonto(totales.totalGastos);
+      gananciaDiaEl.textContent = formatoMonto(gananciaNeta);
+    }
 
-      const gananciaDia = totalVendidoDia - totalInvertidoDia;
+    function actualizarEstadoInversion() {
+      const totales = calcularTotalesFiltrados(null);
+      const gananciaNeta = totales.totalVendido - totales.totalInvertido - totales.totalGastos;
 
-      totalInvertidoDiaEl.textContent = formatoMonto(totalInvertidoDia);
-      totalVendidoDiaEl.textContent = formatoMonto(totalVendidoDia);
-      gananciaDiaEl.textContent = formatoMonto(gananciaDia);
+      if (totales.totalInvertido === 0) {
+        estadoInversionEl.textContent = "No has registrado ninguna inversión aún.";
+        estadoInversionEl.style.color = "#333";
+        estadoInversionEl.style.backgroundColor = "#f0f0f0";
+        estadoInversionEl.style.padding = "10px";
+        estadoInversionEl.style.margin = "20px 0";
+        estadoInversionEl.style.borderRadius = "8px";
+      } else if (gananciaNeta >= 0) {
+        estadoInversionEl.textContent = `¡Felicidades! Has recuperado tu inversión y tu ganancia neta es ${formatoMonto(gananciaNeta)}.`;
+        estadoInversionEl.style.color = "#155724";
+        estadoInversionEl.style.backgroundColor = "#d4edda";
+        estadoInversionEl.style.padding = "10px";
+        estadoInversionEl.style.margin = "20px 0";
+        estadoInversionEl.style.borderRadius = "8px";
+      } else {
+        estadoInversionEl.textContent = `Aún no recuperas tu inversión. Te faltan ${formatoMonto(Math.abs(gananciaNeta))} para recuperarla.`;
+        estadoInversionEl.style.color = "#721c24";
+        estadoInversionEl.style.backgroundColor = "#f8d7da";
+        estadoInversionEl.style.padding = "10px";
+        estadoInversionEl.style.margin = "20px 0";
+        estadoInversionEl.style.borderRadius = "8px";
+      }
     }
 
     function agregarEventosBorrar() {
@@ -372,7 +487,121 @@
       registroForm.cantidad.value = 1; // reset cantidad a 1
     });
 
+    // --- GRÁFICAS ---
+
+    let graficaInversion, graficaVentas, graficaGastos, graficaGanancia;
+
+    function agruparPorFecha(tipo) {
+      const agrupado = {};
+
+      registros.forEach(r => {
+        if (r.tipo !== tipo) return;
+        const fecha = r.fecha;
+        const totalItem = r.cantidad * r.monto;
+
+        if (!agrupado[fecha]) agrupado[fecha] = 0;
+        agrupado[fecha] += totalItem;
+      });
+
+      const fechas = Object.keys(agrupado).sort((a, b) => new Date(a) - new Date(b));
+      const valores = fechas.map(f => agrupado[f]);
+
+      return { fechas, valores };
+    }
+
+    function calcularGananciaAcumulada() {
+      const fechasSet = new Set();
+      registros.forEach(r => fechasSet.add(r.fecha));
+      const fechas = Array.from(fechasSet).sort((a,b) => new Date(a) - new Date(b));
+
+      let acumulado = 0;
+      const gananciaAcumulada = [];
+
+      fechas.forEach(fecha => {
+        const ventasDia = registros.filter(r => r.tipo === 'venta' && r.fecha === fecha)
+                                  .reduce((acc, r) => acc + r.cantidad * r.monto, 0);
+        const inversionesDia = registros.filter(r => r.tipo === 'inversion' && r.fecha === fecha)
+                                       .reduce((acc, r) => acc + r.cantidad * r.monto, 0);
+        const gastosDia = registros.filter(r => r.tipo === 'gasto' && r.fecha === fecha)
+                                  .reduce((acc, r) => acc + r.cantidad * r.monto, 0);
+
+        acumulado += ventasDia - inversionesDia - gastosDia;
+        gananciaAcumulada.push(acumulado);
+      });
+
+      return { fechas, valores: gananciaAcumulada };
+    }
+
+    function crearGrafica(ctx, etiquetas, datos, color, label) {
+      return new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: etiquetas,
+          datasets: [{
+            label: label,
+            data: datos,
+            borderColor: color,
+            backgroundColor: color + '33',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 3,
+            pointHoverRadius: 6,
+            borderWidth: 2,
+            cubicInterpolationMode: 'monotone',
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: true, position: 'top' },
+            tooltip: { mode: 'index', intersect: false }
+          },
+          interaction: {
+            mode: 'nearest',
+            axis: 'x',
+            intersect: false
+          },
+          scales: {
+            x: {
+              title: { display: true, text: 'Fecha' },
+              ticks: { maxRotation: 45, minRotation: 45 }
+            },
+            y: {
+              title: { display: true, text: 'Córdoba (C$)' },
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+
+    function actualizarGraficas() {
+      if (graficaInversion) graficaInversion.destroy();
+      if (graficaVentas) graficaVentas.destroy();
+      if (graficaGastos) graficaGastos.destroy();
+      if (graficaGanancia) graficaGanancia.destroy();
+
+      const invData = agruparPorFecha('inversion');
+      const venData = agruparPorFecha('venta');
+      const gasData = agruparPorFecha('gasto');
+      const ganData = calcularGananciaAcumulada();
+
+      graficaInversion = crearGrafica(document.getElementById('graficaInversion').getContext('2d'),
+        invData.fechas, invData.valores, '#007bff', 'Inversiones');
+
+      graficaVentas = crearGrafica(document.getElementById('graficaVentas').getContext('2d'),
+        venData.fechas, venData.valores, '#28a745', 'Ventas');
+
+      graficaGastos = crearGrafica(document.getElementById('graficaGastos').getContext('2d'),
+        gasData.fechas, gasData.valores, '#dc3545', 'Gastos');
+
+      graficaGanancia = crearGrafica(document.getElementById('graficaGanancia').getContext('2d'),
+        ganData.fechas, ganData.valores, '#ffc107', 'Ganancia Neta Acumulada');
+    }
+
     actualizarTabla();
-  </script>
+  });
+</script>
+
 </body>
 </html>
