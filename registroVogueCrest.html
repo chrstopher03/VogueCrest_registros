@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registro VogueCrest - Ventas e Inversiones</title>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 20px 80px;
+      background: #f9f9f9;
+      color: #222;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    header img {
+      height: 50px;
+      object-fit: contain;
+    }
+    header h1 {
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin: 0;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px 10px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+    button {
+      margin-top: 20px;
+      background-color: #000;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #333;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      margin-bottom: 30px;
+    }
+    thead {
+      background-color: #000;
+      color: white;
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      white-space: nowrap;
+    }
+    tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+    .btn-borrar {
+      background-color: #e63946;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      white-space: nowrap;
+    }
+    .btn-borrar:hover {
+      background-color: #b52a34;
+    }
+    .resumen {
+      margin-top: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .resumen div {
+      flex: 1 1 200px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 0 10px 80px;
+      }
+      header {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+      }
+      header h1 {
+        font-size: 1.3rem;
+      }
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+      th, td {
+        white-space: normal;
+      }
+      button {
+        font-size: 1rem;
+        padding: 12px 0;
+      }
+      .resumen {
+        flex-direction: column;
+        font-size: 1rem;
+      }
+      .resumen div {
+        flex: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="100.png" alt="VogueCrest Logo" />
+    <h1>Registro de Ventas e Inversiones - VogueCrest</h1>
+  </header>
+
+  <form id="registroForm" aria-label="Formulario para registrar ventas e inversiones">
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" required />
+
+    <label for="tipo">Tipo de registro:</label>
+    <select id="tipo" required>
+      <option value="" disabled selected>Selecciona tipo</option>
+      <option value="inversion">Inversión</option>
+      <option value="venta">Venta</option>
+    </select>
+
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" placeholder="Descripción del registro" required></textarea>
+
+    <label for="cantidad">Cantidad:</label>
+    <input type="number" id="cantidad" min="1" step="1" value="1" required />
+
+    <label for="monto">Precio unitario (C$):</label>
+    <input type="number" id="monto" min="0" step="0.01" placeholder="Ej: 900.00" required />
+
+    <button type="submit">Agregar Registro</button>
+  </form>
+
+  <table id="tablaRegistros" aria-label="Tabla de registros">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario (C$)</th>
+        <th>Monto Total (C$)</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Registros aparecerán aquí -->
+    </tbody>
+  </table>
+
+  <div class="resumen" aria-live="polite">
+    <div>
+      <div><strong>Resumen Total</strong></div>
+      <div>Total Invertido:<br><span id="totalInvertido">C$0.00</span></div>
+      <div>Total Vendido:<br><span id="totalVendido">C$0.00</span></div>
+      <div>Ganancia:<br><span id="ganancia">C$0.00</span></div>
+    </div>
+    <div>
+      <div><strong>Resumen Últimos 7 Días</strong></div>
+      <div>Total Invertido:<br><span id="totalInvertidoSemana">C$0.00</span></div>
+      <div>Total Vendido:<br><span id="totalVendidoSemana">C$0.00</span></div>
+      <div>Ganancia:<br><span id="gananciaSemana">C$0.00</span></div>
+    </div>
+  </div>
+
+  <script>
+    const registroForm = document.getElementById('registroForm');
+    const tablaBody = document.querySelector('#tablaRegistros tbody');
+    const totalInvertidoEl = document.getElementById('totalInvertido');
+    const totalVendidoEl = document.getElementById('totalVendido');
+    const gananciaEl = document.getElementById('ganancia');
+
+    const totalInvertidoSemanaEl = document.getElementById('totalInvertidoSemana');
+    const totalVendidoSemanaEl = document.getElementById('totalVendidoSemana');
+    const gananciaSemanaEl = document.getElementById('gananciaSemana');
+
+    let registros = JSON.parse(localStorage.getItem('registroVogueCrest')) || [];
+
+    function formatoMonto(valor) {
+      return 'C$' + Number(valor).toLocaleString('es-NI', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    }
+
+    function guardarRegistros() {
+      localStorage.setItem('registroVogueCrest', JSON.stringify(registros));
+    }
+
+    function actualizarTabla() {
+      tablaBody.innerHTML = '';
+      registros.forEach((registro, index) => {
+        const montoTotal = registro.cantidad * registro.monto;
+        const tr = document.createElement('tr');
+
+        tr.innerHTML = `
+          <td>${registro.fecha}</td>
+          <td>${registro.tipo === 'inversion' ? 'Inversión' : 'Venta'}</td>
+          <td>${registro.descripcion}</td>
+          <td>${registro.cantidad}</td>
+          <td>${formatoMonto(registro.monto)}</td>
+          <td>${formatoMonto(montoTotal)}</td>
+          <td><button class="btn-borrar" data-index="${index}" aria-label="Borrar registro ${registro.descripcion}">Borrar</button></td>
+        `;
+
+        tablaBody.appendChild(tr);
+      });
+
+      actualizarResumen();
+      actualizarResumenSemana();
+      agregarEventosBorrar();
+    }
+
+    function actualizarResumen() {
+      let totalInvertido = 0;
+      let totalVendido = 0;
+
+      registros.forEach(r => {
+        const totalItem = r.cantidad * r.monto;
+        if (r.tipo === 'inversion') totalInvertido += Number(totalItem);
+        else if (r.tipo === 'venta') totalVendido += Number(totalItem);
+      });
+
+      const ganancia = totalVendido - totalInvertido;
+
+      totalInvertidoEl.textContent = formatoMonto(totalInvertido);
+      totalVendidoEl.textContent = formatoMonto(totalVendido);
+      gananciaEl.textContent = formatoMonto(ganancia);
+    }
+
+    function actualizarResumenSemana() {
+      const hoy = new Date();
+      const hace7Dias = new Date(hoy);
+      hace7Dias.setDate(hoy.getDate() - 7);
+
+      let totalInvertidoSemana = 0;
+      let totalVendidoSemana = 0;
+
+      registros.forEach(r => {
+        const fechaRegistro = new Date(r.fecha);
+        if (fechaRegistro >= hace7Dias && fechaRegistro <= hoy) {
+          const totalItem = r.cantidad * r.monto;
+          if (r.tipo === 'inversion') totalInvertidoSemana += Number(totalItem);
+          else if (r.tipo === 'venta') totalVendidoSemana += Number(totalItem);
+        }
+      });
+
+      const gananciaSemana = totalVendidoSemana - totalInvertidoSemana;
+
+      totalInvertidoSemanaEl.textContent = formatoMonto(totalInvertidoSemana);
+      totalVendidoSemanaEl.textContent = formatoMonto(totalVendidoSemana);
+      gananciaSemanaEl.textContent = formatoMonto(gananciaSemana);
+    }
+
+    function agregarEventosBorrar() {
+      document.querySelectorAll('.btn-borrar').forEach(btn => {
+        btn.addEventListener('click', e => {
+          const idx = e.target.getAttribute('data-index');
+          registros.splice(idx, 1);
+          guardarRegistros();
+          actualizarTabla();
+        });
+      });
+    }
+
+    registroForm.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const nuevoRegistro = {
+        fecha: registroForm.fecha.value,
+        tipo: registroForm.tipo.value,
+        descripcion: registroForm.descripcion.value.trim(),
+        cantidad: parseInt(registroForm.cantidad.value),
+        monto: parseFloat(registroForm.monto.value)
+      };
+
+      if (!nuevoRegistro.fecha || !nuevoRegistro.tipo || !nuevoRegistro.descripcion ||
+          isNaN(nuevoRegistro.cantidad) || nuevoRegistro.cantidad < 1 ||
+          isNaN(nuevoRegistro.monto) || nuevoRegistro.monto < 0) {
+        alert('Por favor, completa todos los campos correctamente.');
+        return;
+      }
+
+      registros.push(nuevoRegistro);
+      guardarRegistros();
+      actualizarTabla();
+
+      registroForm.reset();
+      registroForm.cantidad.value = 1; // reset cantidad a 1
+    });
+
+    actualizarTabla();
+  </script>
+</body>
+</html>
