@@ -215,6 +215,12 @@
       <div>Total Vendido:<br><span id="totalVendidoSemana">C$0.00</span></div>
       <div>Ganancia:<br><span id="gananciaSemana">C$0.00</span></div>
     </div>
+    <div>
+      <div><strong>Resumen del Día</strong></div>
+      <div>Total Invertido:<br><span id="totalInvertidoDia">C$0.00</span></div>
+      <div>Total Vendido:<br><span id="totalVendidoDia">C$0.00</span></div>
+      <div>Ganancia:<br><span id="gananciaDia">C$0.00</span></div>
+    </div>
   </div>
 
   <script>
@@ -227,6 +233,10 @@
     const totalInvertidoSemanaEl = document.getElementById('totalInvertidoSemana');
     const totalVendidoSemanaEl = document.getElementById('totalVendidoSemana');
     const gananciaSemanaEl = document.getElementById('gananciaSemana');
+
+    const totalInvertidoDiaEl = document.getElementById('totalInvertidoDia');
+    const totalVendidoDiaEl = document.getElementById('totalVendidoDia');
+    const gananciaDiaEl = document.getElementById('gananciaDia');
 
     let registros = JSON.parse(localStorage.getItem('registroVogueCrest')) || [];
 
@@ -259,6 +269,7 @@
 
       actualizarResumen();
       actualizarResumenSemana();
+      actualizarResumenDia();
       agregarEventosBorrar();
     }
 
@@ -301,6 +312,27 @@
       totalInvertidoSemanaEl.textContent = formatoMonto(totalInvertidoSemana);
       totalVendidoSemanaEl.textContent = formatoMonto(totalVendidoSemana);
       gananciaSemanaEl.textContent = formatoMonto(gananciaSemana);
+    }
+
+    function actualizarResumenDia() {
+      const hoyStr = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
+
+      let totalInvertidoDia = 0;
+      let totalVendidoDia = 0;
+
+      registros.forEach(r => {
+        if (r.fecha === hoyStr) {
+          const totalItem = r.cantidad * r.monto;
+          if (r.tipo === 'inversion') totalInvertidoDia += Number(totalItem);
+          else if (r.tipo === 'venta') totalVendidoDia += Number(totalItem);
+        }
+      });
+
+      const gananciaDia = totalVendidoDia - totalInvertidoDia;
+
+      totalInvertidoDiaEl.textContent = formatoMonto(totalInvertidoDia);
+      totalVendidoDiaEl.textContent = formatoMonto(totalVendidoDia);
+      gananciaDiaEl.textContent = formatoMonto(gananciaDia);
     }
 
     function agregarEventosBorrar() {
