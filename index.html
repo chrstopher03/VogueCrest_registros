@@ -16,38 +16,39 @@
 }
 
 body{
-  background:#eaf6ff;
-  color:#222;
+  background:#eaf4ff;
+  color:#0b2c4a;
 }
 
-/* HEADER */
-header{
+/* NAVBAR */
+nav{
   background:#ffffff;
+  padding:15px 30px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:15px 25px;
-  box-shadow:0 4px 10px rgba(0,0,0,.1);
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
 .logo{
-  font-size:28px;
+  font-size:30px;
   font-weight:700;
-  color:#0059b3;
+  color:#0a4db3;
 }
 
-.logo span{
-  color:#e53935;
-}
+.logo span{color:#e53935;}
 
-nav a{
-  margin:0 10px;
+.menu a{
+  margin:0 12px;
   text-decoration:none;
   color:#333;
   font-weight:500;
 }
 
-.whatsapp-btn{
+.btn-wsp{
   background:#25d366;
   color:#fff;
   padding:10px 18px;
@@ -59,252 +60,272 @@ nav a{
 /* HERO */
 .hero{
   background:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),
-  url("https://images.unsplash.com/photo-1568605114967-8130f3a36994");
+  url("https://images.unsplash.com/photo-1504309092620-4d0ec726efa4");
   background-size:cover;
   background-position:center;
-  padding:70px 20px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
-  align-items:center;
+  padding:80px 20px;
 }
 
 .hero-box{
+  max-width:1200px;
+  margin:auto;
   background:rgba(255,255,255,.95);
-  padding:30px;
-  border-radius:20px;
+  border-radius:25px;
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:30px;
+  padding:40px;
 }
 
-.hero h1{
-  font-size:38px;
-  color:#004aad;
+/* HERO TEXT */
+.hero-text h1{
+  font-size:42px;
+  color:#0a4db3;
 }
 
-.hero h1 span{
-  color:#00a859;
-}
+.hero-text span{color:#00a859;}
 
-.hero p{
+.hero-text p{
   margin:15px 0;
   font-size:18px;
 }
 
-.hero-buttons{
+.hero-text a{
+  display:inline-block;
   margin-top:20px;
+  background:#25d366;
+  color:#fff;
+  padding:14px 28px;
+  border-radius:35px;
+  text-decoration:none;
+  font-size:18px;
+  font-weight:600;
 }
 
-.hero-buttons a{
+/* CASA */
+.house{
+  background:#39a9dc;
+  border-radius:20px;
+  padding:25px;
+  position:relative;
+  color:#fff;
+}
+
+.sign{
+  background:#fff;
+  color:#0a4db3;
+  padding:12px 18px;
+  border-radius:15px;
+  font-weight:700;
+}
+
+.sign span{color:#e53935;}
+
+.gate{
+  position:absolute;
+  left:20px;
+  bottom:20px;
+  width:140px;
+  height:90px;
+  background:#000;
+  border-radius:5px;
+}
+
+/* MOTO ANIMADA */
+.moto{
+  font-size:60px;
+  margin-top:25px;
+  animation:mover 3s infinite alternate ease-in-out;
+}
+
+@keyframes mover{
+  from{transform:translateX(-20px);}
+  to{transform:translateX(20px);}
+}
+
+.owner{
+  margin-top:10px;
+  font-size:20px;
+  font-weight:600;
+}
+
+/* PRODUCTOS */
+.section{
+  padding:70px 20px;
+}
+
+.section h2{
+  text-align:center;
+  font-size:34px;
+  margin-bottom:40px;
+}
+
+.products{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
+
+.product{
+  background:#fff;
+  border-radius:20px;
+  padding:25px;
+  text-align:center;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);
+}
+
+.product img{
+  width:120px;
+}
+
+.product h3{
+  margin:15px 0;
+}
+
+.product a{
   display:inline-block;
-  margin:8px 10px 0 0;
+  margin-top:15px;
+  background:#25d366;
+  color:#fff;
   padding:12px 20px;
   border-radius:30px;
   text-decoration:none;
   font-weight:600;
 }
 
-.btn-wsp{
-  background:#25d366;
-  color:#fff;
-}
-
-.btn-call{
-  background:#004aad;
-  color:#fff;
-}
-
-/* CASA + MOTO */
-.scene{
-  position:relative;
-  text-align:center;
-}
-
-.house{
-  background:#2fa4d9;
-  border-radius:20px;
-  padding:40px 20px;
-  color:#fff;
-  position:relative;
-}
-
-.sign{
-  background:#fff;
-  color:#004aad;
-  display:inline-block;
-  padding:10px 20px;
-  border-radius:15px;
-  font-weight:700;
-  margin-bottom:15px;
-}
-
-.sign span{
-  color:#e53935;
-}
-
-.gate{
-  width:120px;
-  height:80px;
-  background:#000;
-  position:absolute;
-  left:20px;
-  bottom:20px;
-  border-radius:5px;
-}
-
-.moto{
-  margin-top:20px;
-  font-size:60px;
-}
-
-.owner{
-  margin-top:20px;
-  font-size:18px;
-  font-weight:600;
-}
-
 /* COMO FUNCIONA */
-.section{
-  padding:60px 20px;
-  text-align:center;
-}
-
-.section h2{
-  font-size:32px;
-  margin-bottom:30px;
-  color:#004aad;
-}
-
 .steps{
+  max-width:1200px;
+  margin:auto;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:25px;
 }
 
 .step{
   background:#fff;
-  padding:25px;
+  padding:30px;
   border-radius:20px;
-  box-shadow:0 5px 15px rgba(0,0,0,.1);
-}
-
-.step h3{
-  margin:15px 0;
-  color:#00a859;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);
+  text-align:center;
 }
 
 /* CTA */
 .cta{
-  background:#004aad;
+  background:#0a4db3;
   color:#fff;
-  padding:50px 20px;
   text-align:center;
-}
-
-.cta h2{
-  font-size:32px;
+  padding:60px 20px;
 }
 
 .cta a{
-  display:inline-block;
-  margin-top:20px;
   background:#25d366;
   color:#fff;
-  padding:15px 25px;
-  border-radius:30px;
+  padding:16px 35px;
+  border-radius:40px;
+  font-size:20px;
   text-decoration:none;
-  font-size:18px;
-  font-weight:600;
+  font-weight:700;
 }
 
 /* FOOTER */
 footer{
-  background:#022f5c;
+  background:#082c4a;
   color:#fff;
   padding:30px 20px;
   text-align:center;
 }
 
-footer a{
-  color:#25d366;
+/* WHATSAPP FLOAT */
+.float-wsp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25d366;
+  color:#fff;
+  padding:15px;
+  border-radius:50%;
+  font-size:30px;
   text-decoration:none;
-  font-weight:600;
+  box-shadow:0 5px 15px rgba(0,0,0,.3);
 }
 
-@media(max-width:768px){
-  .hero{
-    grid-template-columns:1fr;
-  }
+@media(max-width:900px){
+  .hero-box{grid-template-columns:1fr;}
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<nav>
   <div class="logo">Ra<span>Fla</span></div>
-  <nav>
-    <a href="#">Inicio</a>
-    <a href="#">Productos</a>
-    <a href="#">Cobertura</a>
-  </nav>
-  <a class="whatsapp-btn" href="https://wa.me/50586951757">Pedir por WhatsApp</a>
-</header>
+  <div class="menu">
+    <a href="#productos">Productos</a>
+    <a href="#como">Cómo funciona</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <a class="btn-wsp" href="https://wa.me/50586951757">WhatsApp</a>
+</nav>
 
 <section class="hero">
   <div class="hero-box">
-    <h1>Pide tu gas <span>y tu agua</span><br>a domicilio</h1>
-    <p>Entrega rápida y segura hasta la puerta de tu hogar.</p>
-
-    <div class="hero-buttons">
-      <a class="btn-wsp" href="https://wa.me/50586951757">WhatsApp</a>
-      <a class="btn-call" href="tel:86951757">Llamar</a>
+    <div class="hero-text">
+      <h1>¡Pide tu gas <br><span>y tu agua a domicilio!</span></h1>
+      <p>Entrega rápida y confiable hasta tu hogar.</p>
+      <p><strong>📞 8695-1757 | 8600-9066</strong></p>
+      <a href="https://wa.me/50586951757">Pedir por WhatsApp</a>
     </div>
 
-    <p><strong>📞 8695-1757 | 8600-9066</strong></p>
-  </div>
-
-  <div class="scene">
     <div class="house">
-      <div class="sign">AGENCIA DE GAS <span>RaFla</span><br>8695-1757 • 8600-9066</div>
+      <div class="sign">AGENCIA DE GAS <span>RaFla</span><br>8695-1757 · 8600-9066</div>
       <div class="gate"></div>
       <div class="moto">🏍️ 🟢💧</div>
-      <div class="owner">👨‍🔧 Dueño RaFla</div>
+      <div class="owner">👨 Dueño RaFla</div>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <h2>Cómo funciona</h2>
+<section class="section" id="productos">
+  <h2>Nuestros Productos</h2>
+  <div class="products">
+    <div class="product">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png">
+      <h3>Cilindro de Gas</h3>
+      <a href="https://wa.me/50586951757">Pedir Gas</a>
+    </div>
+    <div class="product">
+      <img src="https://cdn-icons-png.flaticon.com/512/3105/3105807.png">
+      <h3>Galón de Agua</h3>
+      <a href="https://wa.me/50586951757">Pedir Agua</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="como">
+  <h2>Cómo Funciona</h2>
   <div class="steps">
-    <div class="step">
-      <h3>1. Escríbenos</h3>
-      <p>Por WhatsApp o llamada.</p>
-    </div>
-    <div class="step">
-      <h3>2. Preparamos</h3>
-      <p>Gas y agua listos.</p>
-    </div>
-    <div class="step">
-      <h3>3. Moto en camino</h3>
-      <p>Entrega rápida.</p>
-    </div>
-    <div class="step">
-      <h3>4. Entrega segura</h3>
-      <p>Hasta tu casa.</p>
-    </div>
+    <div class="step">📱 Escríbenos</div>
+    <div class="step">📦 Preparamos</div>
+    <div class="step">🏍️ En camino</div>
+    <div class="step">🏠 Entrega segura</div>
   </div>
 </section>
 
-<section class="cta">
+<section class="cta" id="contacto">
   <h2>Pide tu gas y tu agua ahora</h2>
   <a href="https://wa.me/50586951757">Pedir gas ahora</a>
   <p style="margin-top:15px;">🌐 agenciarafla.netlify.app</p>
 </section>
 
 <footer>
-  <p>Visita nuestra página web</p>
-  <a href="https://agenciarafla.netlify.app">agenciarafla.netlify.app</a>
-  <p style="margin-top:10px;">📞 8695-1757 | 8600-9066</p>
+  <p>Agencia de Gas RaFla</p>
+  <p>📞 8695-1757 | 8600-9066</p>
 </footer>
 
+<a class="float-wsp" href="https://wa.me/50586951757">💬</a>
+
 </body>
-                                   </html>
+</html>
