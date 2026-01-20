@@ -7,212 +7,92 @@
 
 <style>
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family: Arial, sans-serif;
+  box-sizing:border-box;
 }
 
 body{
-  background:#eaf6ff;
+  background:#0b2c4d;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* HEADER */
-header{
-  background:#fff;
-  padding:12px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-}
-
-header img{
-  height:45px;
-}
-
-nav a{
-  margin:0 10px;
-  text-decoration:none;
-  color:#0b3c6f;
-  font-weight:bold;
-}
-
-.whatsapp-btn{
-  background:#25d366;
-  color:#fff;
-  padding:10px 15px;
-  border-radius:25px;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-/* HERO */
-.hero{
-  position:relative;
-}
-
-.hero img{
+/* CONTENEDOR PRINCIPAL */
+.contenedor{
   width:100%;
+  display:flex;
+  justify-content:center;
+}
+
+/* IMAGEN */
+.contenedor img{
+  width:100%;
+  max-width:1200px;
+  height:auto;
   display:block;
 }
 
-.hero-content{
+/* ZONAS CLICKEABLES */
+.area{
   position:absolute;
-  top:0;
-  left:0;
+  cursor:pointer;
+}
+
+/* CONTENEDOR RELATIVO */
+.relativo{
+  position:relative;
   width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:20px;
-  color:#fff;
-  background:linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.1));
-}
-
-.hero-content h1{
-  font-size:2rem;
-  margin-bottom:10px;
-}
-
-.hero-content p{
-  font-size:1.1rem;
-  margin-bottom:15px;
-}
-
-.hero-content a{
-  background:#25d366;
-  padding:12px 20px;
-  color:#fff;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:bold;
-  width:fit-content;
-}
-
-/* SECCION */
-.section{
-  padding:40px 20px;
-  text-align:center;
-}
-
-.section h2{
-  color:#0b3c6f;
-  margin-bottom:25px;
-}
-
-/* PASOS */
-.steps{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:20px;
-}
-
-.step{
-  background:#fff;
-  padding:20px;
-  border-radius:15px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
-
-.step img{
-  width:80px;
-  margin-bottom:10px;
-}
-
-/* CTA FINAL */
-.cta{
-  background:#0b3c6f;
-  color:#fff;
-  padding:40px 20px;
-  text-align:center;
-}
-
-.cta a{
-  display:inline-block;
-  margin-top:15px;
-  background:#25d366;
-  padding:14px 25px;
-  border-radius:30px;
-  color:#fff;
-  text-decoration:none;
-  font-size:1.1rem;
-}
-
-/* FOOTER */
-footer{
-  background:#062a4d;
-  color:#fff;
-  padding:20px;
-  text-align:center;
-  font-size:0.9rem;
-}
-
-/* RESPONSIVE */
-@media(max-width:600px){
-  .hero-content h1{
-    font-size:1.6rem;
-  }
+  max-width:1200px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <strong>AGENCIA DE GAS RaFla</strong>
-  <nav>
-    <a href="#">Inicio</a>
-    <a href="#">Productos</a>
-    <a href="#">Quiénes Somos</a>
-    <a href="#">Cobertura</a>
-  </nav>
-  <a class="whatsapp-btn" href="https://wa.me/50586951757">Pedir por WhatsApp</a>
-</header>
+<div class="contenedor">
+  <div class="relativo">
 
-<!-- HERO CON IMAGEN BASE64 -->
-<section class="hero">
-  <img src="PEGA_AQUI_TU_IMAGEN_BASE64" alt="Agencia de Gas Rafla">
-  <div class="hero-content">
-    <h1>¡Pide tu gas y tu agua a domicilio!</h1>
-    <p>Entrega rápida y confiable hasta la puerta de tu hogar</p>
-    <a href="https://wa.me/50586951757">Pedir por WhatsApp</a>
+    <!-- IMAGEN PRINCIPAL -->
+    <img src="rafla.jpg" alt="Agencia de Gas Rafla">
+
+    <!-- BOTÓN WHATSAPP SUPERIOR -->
+    <a href="https://wa.me/50586951757" target="_blank"
+       class="area"
+       style="top:2%; right:3%; width:22%; height:7%;">
+    </a>
+
+    <!-- BOTÓN WHATSAPP CENTRAL -->
+    <a href="https://wa.me/50586951757" target="_blank"
+       class="area"
+       style="top:45%; left:6%; width:35%; height:8%;">
+    </a>
+
+    <!-- BOTÓN PEDIR GAS AHORA -->
+    <a href="https://wa.me/50586951757" target="_blank"
+       class="area"
+       style="top:73%; left:20%; width:60%; height:8%;">
+    </a>
+
+    <!-- TELÉFONO 1 -->
+    <a href="tel:86951757"
+       class="area"
+       style="top:38%; left:6%; width:30%; height:4%;">
+    </a>
+
+    <!-- TELÉFONO 2 -->
+    <a href="tel:86009066"
+       class="area"
+       style="top:38%; left:36%; width:30%; height:4%;">
+    </a>
+
+    <!-- WEB -->
+    <a href="https://agenciarafla.netlify.app" target="_blank"
+       class="area"
+       style="top:82%; left:30%; width:40%; height:4%;">
+    </a>
+
   </div>
-</section>
-
-<section class="section">
-  <h2>Cómo Funciona</h2>
-  <div class="steps">
-    <div class="step">
-      <img src="https://img.icons8.com/color/96/whatsapp.png">
-      <p>1. Escríbenos</p>
-    </div>
-    <div class="step">
-      <img src="https://img.icons8.com/color/96/gas-cylinder.png">
-      <p>2. Preparamos tu pedido</p>
-    </div>
-    <div class="step">
-      <img src="https://img.icons8.com/color/96/motorcycle.png">
-      <p>3. Moto en camino</p>
-    </div>
-    <div class="step">
-      <img src="https://img.icons8.com/color/96/thumb-up.png">
-      <p>4. Entrega segura</p>
-    </div>
-  </div>
-</section>
-
-<section class="cta">
-  <h2>Pide tu gas y tu agua a domicilio</h2>
-  <a href="https://wa.me/50586951757">Pedir gas ahora</a>
-  <p style="margin-top:15px;">agenciarafla.netlify.app</p>
-</section>
-
-<footer>
-  📞 8695-1757 | 8600-9066 <br>
-  © Agencia de Gas Rafla
-</footer>
+</div>
 
 </body>
 </html>
