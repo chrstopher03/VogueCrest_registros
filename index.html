@@ -2,330 +2,218 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Agencia de Gas RaFla</title>
+<title>Agencia de Gas Rafla</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 *{
+  box-sizing:border-box;
   margin:0;
   padding:0;
-  box-sizing:border-box;
-  font-family:Poppins,sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body{
-  background:#eaf4ff;
-  color:#0b2c4a;
+  background:#eaf6ff;
 }
 
-/* NAVBAR */
-nav{
-  background:#ffffff;
-  padding:15px 30px;
+/* HEADER */
+header{
+  background:#fff;
+  padding:12px 20px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  box-shadow:0 4px 12px rgba(0,0,0,.1);
-  position:sticky;
-  top:0;
-  z-index:1000;
+  flex-wrap:wrap;
 }
 
-.logo{
-  font-size:30px;
-  font-weight:700;
-  color:#0a4db3;
+header img{
+  height:45px;
 }
 
-.logo span{color:#e53935;}
-
-.menu a{
-  margin:0 12px;
+nav a{
+  margin:0 10px;
   text-decoration:none;
-  color:#333;
-  font-weight:500;
+  color:#0b3c6f;
+  font-weight:bold;
 }
 
-.btn-wsp{
+.whatsapp-btn{
   background:#25d366;
   color:#fff;
-  padding:10px 18px;
-  border-radius:30px;
+  padding:10px 15px;
+  border-radius:25px;
   text-decoration:none;
-  font-weight:600;
+  font-weight:bold;
 }
 
 /* HERO */
 .hero{
-  background:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),
-  url("https://images.unsplash.com/photo-1504309092620-4d0ec726efa4");
-  background-size:cover;
-  background-position:center;
-  padding:80px 20px;
-}
-
-.hero-box{
-  max-width:1200px;
-  margin:auto;
-  background:rgba(255,255,255,.95);
-  border-radius:25px;
-  display:grid;
-  grid-template-columns:1.1fr 1fr;
-  gap:30px;
-  padding:40px;
-}
-
-/* HERO TEXT */
-.hero-text h1{
-  font-size:42px;
-  color:#0a4db3;
-}
-
-.hero-text span{color:#00a859;}
-
-.hero-text p{
-  margin:15px 0;
-  font-size:18px;
-}
-
-.hero-text a{
-  display:inline-block;
-  margin-top:20px;
-  background:#25d366;
-  color:#fff;
-  padding:14px 28px;
-  border-radius:35px;
-  text-decoration:none;
-  font-size:18px;
-  font-weight:600;
-}
-
-/* CASA */
-.house{
-  background:#39a9dc;
-  border-radius:20px;
-  padding:25px;
   position:relative;
-  color:#fff;
 }
 
-.sign{
-  background:#fff;
-  color:#0a4db3;
-  padding:12px 18px;
-  border-radius:15px;
-  font-weight:700;
+.hero img{
+  width:100%;
+  display:block;
 }
 
-.sign span{color:#e53935;}
-
-.gate{
+.hero-content{
   position:absolute;
-  left:20px;
-  bottom:20px;
-  width:140px;
-  height:90px;
-  background:#000;
-  border-radius:5px;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:20px;
+  color:#fff;
+  background:linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.1));
 }
 
-/* MOTO ANIMADA */
-.moto{
-  font-size:60px;
-  margin-top:25px;
-  animation:mover 3s infinite alternate ease-in-out;
+.hero-content h1{
+  font-size:2rem;
+  margin-bottom:10px;
 }
 
-@keyframes mover{
-  from{transform:translateX(-20px);}
-  to{transform:translateX(20px);}
+.hero-content p{
+  font-size:1.1rem;
+  margin-bottom:15px;
 }
 
-.owner{
-  margin-top:10px;
-  font-size:20px;
-  font-weight:600;
+.hero-content a{
+  background:#25d366;
+  padding:12px 20px;
+  color:#fff;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  width:fit-content;
 }
 
-/* PRODUCTOS */
+/* SECCION */
 .section{
-  padding:70px 20px;
+  padding:40px 20px;
+  text-align:center;
 }
 
 .section h2{
-  text-align:center;
-  font-size:34px;
-  margin-bottom:40px;
+  color:#0b3c6f;
+  margin-bottom:25px;
 }
 
-.products{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:30px;
-}
-
-.product{
-  background:#fff;
-  border-radius:20px;
-  padding:25px;
-  text-align:center;
-  box-shadow:0 8px 20px rgba(0,0,0,.1);
-}
-
-.product img{
-  width:120px;
-}
-
-.product h3{
-  margin:15px 0;
-}
-
-.product a{
-  display:inline-block;
-  margin-top:15px;
-  background:#25d366;
-  color:#fff;
-  padding:12px 20px;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:600;
-}
-
-/* COMO FUNCIONA */
+/* PASOS */
 .steps{
-  max-width:1200px;
-  margin:auto;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:25px;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:20px;
 }
 
 .step{
   background:#fff;
-  padding:30px;
-  border-radius:20px;
-  box-shadow:0 8px 20px rgba(0,0,0,.1);
-  text-align:center;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* CTA */
+.step img{
+  width:80px;
+  margin-bottom:10px;
+}
+
+/* CTA FINAL */
 .cta{
-  background:#0a4db3;
+  background:#0b3c6f;
   color:#fff;
+  padding:40px 20px;
   text-align:center;
-  padding:60px 20px;
 }
 
 .cta a{
+  display:inline-block;
+  margin-top:15px;
   background:#25d366;
+  padding:14px 25px;
+  border-radius:30px;
   color:#fff;
-  padding:16px 35px;
-  border-radius:40px;
-  font-size:20px;
   text-decoration:none;
-  font-weight:700;
+  font-size:1.1rem;
 }
 
 /* FOOTER */
 footer{
-  background:#082c4a;
+  background:#062a4d;
   color:#fff;
-  padding:30px 20px;
+  padding:20px;
   text-align:center;
+  font-size:0.9rem;
 }
 
-/* WHATSAPP FLOAT */
-.float-wsp{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25d366;
-  color:#fff;
-  padding:15px;
-  border-radius:50%;
-  font-size:30px;
-  text-decoration:none;
-  box-shadow:0 5px 15px rgba(0,0,0,.3);
-}
-
-@media(max-width:900px){
-  .hero-box{grid-template-columns:1fr;}
+/* RESPONSIVE */
+@media(max-width:600px){
+  .hero-content h1{
+    font-size:1.6rem;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-  <div class="logo">Ra<span>Fla</span></div>
-  <div class="menu">
-    <a href="#productos">Productos</a>
-    <a href="#como">Cómo funciona</a>
-    <a href="#contacto">Contacto</a>
-  </div>
-  <a class="btn-wsp" href="https://wa.me/50586951757">WhatsApp</a>
-</nav>
+<header>
+  <strong>AGENCIA DE GAS RaFla</strong>
+  <nav>
+    <a href="#">Inicio</a>
+    <a href="#">Productos</a>
+    <a href="#">Quiénes Somos</a>
+    <a href="#">Cobertura</a>
+  </nav>
+  <a class="whatsapp-btn" href="https://wa.me/50586951757">Pedir por WhatsApp</a>
+</header>
 
+<!-- HERO CON IMAGEN BASE64 -->
 <section class="hero">
-  <div class="hero-box">
-    <div class="hero-text">
-      <h1>¡Pide tu gas <br><span>y tu agua a domicilio!</span></h1>
-      <p>Entrega rápida y confiable hasta tu hogar.</p>
-      <p><strong>📞 8695-1757 | 8600-9066</strong></p>
-      <a href="https://wa.me/50586951757">Pedir por WhatsApp</a>
-    </div>
-
-    <div class="house">
-      <div class="sign">AGENCIA DE GAS <span>RaFla</span><br>8695-1757 · 8600-9066</div>
-      <div class="gate"></div>
-      <div class="moto">🏍️ 🟢💧</div>
-      <div class="owner">👨 Dueño RaFla</div>
-    </div>
+  <img src="PEGA_AQUI_TU_IMAGEN_BASE64" alt="Agencia de Gas Rafla">
+  <div class="hero-content">
+    <h1>¡Pide tu gas y tu agua a domicilio!</h1>
+    <p>Entrega rápida y confiable hasta la puerta de tu hogar</p>
+    <a href="https://wa.me/50586951757">Pedir por WhatsApp</a>
   </div>
 </section>
 
-<section class="section" id="productos">
-  <h2>Nuestros Productos</h2>
-  <div class="products">
-    <div class="product">
-      <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png">
-      <h3>Cilindro de Gas</h3>
-      <a href="https://wa.me/50586951757">Pedir Gas</a>
-    </div>
-    <div class="product">
-      <img src="https://cdn-icons-png.flaticon.com/512/3105/3105807.png">
-      <h3>Galón de Agua</h3>
-      <a href="https://wa.me/50586951757">Pedir Agua</a>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="como">
+<section class="section">
   <h2>Cómo Funciona</h2>
   <div class="steps">
-    <div class="step">📱 Escríbenos</div>
-    <div class="step">📦 Preparamos</div>
-    <div class="step">🏍️ En camino</div>
-    <div class="step">🏠 Entrega segura</div>
+    <div class="step">
+      <img src="https://img.icons8.com/color/96/whatsapp.png">
+      <p>1. Escríbenos</p>
+    </div>
+    <div class="step">
+      <img src="https://img.icons8.com/color/96/gas-cylinder.png">
+      <p>2. Preparamos tu pedido</p>
+    </div>
+    <div class="step">
+      <img src="https://img.icons8.com/color/96/motorcycle.png">
+      <p>3. Moto en camino</p>
+    </div>
+    <div class="step">
+      <img src="https://img.icons8.com/color/96/thumb-up.png">
+      <p>4. Entrega segura</p>
+    </div>
   </div>
 </section>
 
-<section class="cta" id="contacto">
-  <h2>Pide tu gas y tu agua ahora</h2>
+<section class="cta">
+  <h2>Pide tu gas y tu agua a domicilio</h2>
   <a href="https://wa.me/50586951757">Pedir gas ahora</a>
-  <p style="margin-top:15px;">🌐 agenciarafla.netlify.app</p>
+  <p style="margin-top:15px;">agenciarafla.netlify.app</p>
 </section>
 
 <footer>
-  <p>Agencia de Gas RaFla</p>
-  <p>📞 8695-1757 | 8600-9066</p>
+  📞 8695-1757 | 8600-9066 <br>
+  © Agencia de Gas Rafla
 </footer>
-
-<a class="float-wsp" href="https://wa.me/50586951757">💬</a>
 
 </body>
 </html>
+
